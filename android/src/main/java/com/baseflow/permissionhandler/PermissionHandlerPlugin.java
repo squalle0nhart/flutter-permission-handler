@@ -44,22 +44,7 @@ public class PermissionHandlerPlugin implements MethodCallHandler {
   private static final int PERMISSION_CODE_IGNORE_BATTERY_OPTIMIZATIONS = 5672353;
 
   //PERMISSION_GROUP
-  private static final int PERMISSION_GROUP_CALENDAR = 0;
   private static final int PERMISSION_GROUP_CAMERA = 1;
-  private static final int PERMISSION_GROUP_CONTACTS = 2;
-  private static final int PERMISSION_GROUP_LOCATION = 3;
-  private static final int PERMISSION_GROUP_LOCATION_ALWAYS = 4;
-  private static final int PERMISSION_GROUP_LOCATION_WHEN_IN_USE = 5;
-  private static final int PERMISSION_GROUP_MEDIA_LIBRARY = 6;
-  private static final int PERMISSION_GROUP_MICROPHONE = 7;
-  private static final int PERMISSION_GROUP_PHONE = 8;
-  private static final int PERMISSION_GROUP_PHOTOS = 9;
-  private static final int PERMISSION_GROUP_REMINDERS = 10;
-  private static final int PERMISSION_GROUP_SENSORS = 11;
-  private static final int PERMISSION_GROUP_SMS = 12;
-  private static final int PERMISSION_GROUP_SPEECH = 13;
-  private static final int PERMISSION_GROUP_STORAGE = 14;
-  private static final int PERMISSION_GROUP_IGNORE_BATTERY_OPTIMIZATIONS = 15;
   private static final int PERMISSION_GROUP_UNKNOWN = 16;
 
   private PermissionHandlerPlugin(Registrar mRegistrar) {
@@ -68,22 +53,7 @@ public class PermissionHandlerPlugin implements MethodCallHandler {
 
   @Retention(RetentionPolicy.SOURCE)
   @IntDef({
-      PERMISSION_GROUP_CALENDAR,
       PERMISSION_GROUP_CAMERA,
-      PERMISSION_GROUP_CONTACTS,
-      PERMISSION_GROUP_LOCATION,
-      PERMISSION_GROUP_LOCATION_ALWAYS,
-      PERMISSION_GROUP_LOCATION_WHEN_IN_USE,
-      PERMISSION_GROUP_MEDIA_LIBRARY,
-      PERMISSION_GROUP_MICROPHONE,
-      PERMISSION_GROUP_PHONE,
-      PERMISSION_GROUP_PHOTOS,
-      PERMISSION_GROUP_REMINDERS,
-      PERMISSION_GROUP_SENSORS,
-      PERMISSION_GROUP_SMS,
-      PERMISSION_GROUP_SPEECH,
-      PERMISSION_GROUP_STORAGE,
-      PERMISSION_GROUP_IGNORE_BATTERY_OPTIMIZATIONS,
       PERMISSION_GROUP_UNKNOWN,
   })
   private @interface PermissionGroup {
@@ -157,39 +127,8 @@ public class PermissionHandlerPlugin implements MethodCallHandler {
   @PermissionGroup
   private static int parseManifestName(String permission) {
     switch (permission) {
-      case Manifest.permission.READ_CALENDAR:
-      case Manifest.permission.WRITE_CALENDAR:
-        return PERMISSION_GROUP_CALENDAR;
       case Manifest.permission.CAMERA:
         return PERMISSION_GROUP_CAMERA;
-      case Manifest.permission.READ_CONTACTS:
-      case Manifest.permission.WRITE_CONTACTS:
-      case Manifest.permission.GET_ACCOUNTS:
-        return PERMISSION_GROUP_CONTACTS;
-      case Manifest.permission.ACCESS_COARSE_LOCATION:
-      case Manifest.permission.ACCESS_FINE_LOCATION:
-        return PERMISSION_GROUP_LOCATION;
-      case Manifest.permission.RECORD_AUDIO:
-        return PERMISSION_GROUP_MICROPHONE;
-      case Manifest.permission.READ_PHONE_STATE:
-      case Manifest.permission.CALL_PHONE:
-      case Manifest.permission.READ_CALL_LOG:
-      case Manifest.permission.WRITE_CALL_LOG:
-      case Manifest.permission.ADD_VOICEMAIL:
-      case Manifest.permission.USE_SIP:
-      case Manifest.permission.PROCESS_OUTGOING_CALLS:
-        return PERMISSION_GROUP_PHONE;
-      case Manifest.permission.BODY_SENSORS:
-        return PERMISSION_GROUP_SENSORS;
-      case Manifest.permission.SEND_SMS:
-      case Manifest.permission.RECEIVE_SMS:
-      case Manifest.permission.READ_SMS:
-      case Manifest.permission.RECEIVE_WAP_PUSH:
-      case Manifest.permission.RECEIVE_MMS:
-        return PERMISSION_GROUP_SMS;
-      case Manifest.permission.READ_EXTERNAL_STORAGE:
-      case Manifest.permission.WRITE_EXTERNAL_STORAGE:
-        return PERMISSION_GROUP_STORAGE;
       default:
         return PERMISSION_GROUP_UNKNOWN;
     }
