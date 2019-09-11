@@ -31,7 +31,7 @@
 
     if (permission == PermissionGroupCamera) {
         mediaType = AVMediaTypeVideo;
-    else {
+    } else {
         completionHandler(PermissionStatusUnknown);
         return;
     }
