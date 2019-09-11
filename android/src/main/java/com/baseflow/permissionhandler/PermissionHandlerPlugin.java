@@ -44,7 +44,7 @@ public class PermissionHandlerPlugin implements MethodCallHandler {
   private static final int PERMISSION_CODE_IGNORE_BATTERY_OPTIMIZATIONS = 5672353;
 
   //PERMISSION_GROUP
-  private static final int PERMISSION_GROUP_CALENDAR = 0;
+  private static final int PERMISSION_GROUP_CAMERA = 1;
   private static final int PERMISSION_GROUP_UNKNOWN = 16;
 
   private PermissionHandlerPlugin(Registrar mRegistrar) {
@@ -53,7 +53,7 @@ public class PermissionHandlerPlugin implements MethodCallHandler {
 
   @Retention(RetentionPolicy.SOURCE)
   @IntDef({
-      PERMISSION_GROUP_CALENDAR,
+          PERMISSION_GROUP_CAMERA,
       PERMISSION_GROUP_UNKNOWN,
   })
   private @interface PermissionGroup {
@@ -114,11 +114,6 @@ public class PermissionHandlerPlugin implements MethodCallHandler {
     registrar.addActivityResultListener(new ActivityResultListener() {
       @Override
       public boolean onActivityResult(int requestCode, int responseCode, Intent intent) {
-        if (requestCode == PERMISSION_CODE_IGNORE_BATTERY_OPTIMIZATIONS) {
-          permissionHandlerPlugin.handleIgnoreBatteryOptimizationsRequest(responseCode == Activity.RESULT_OK);
-          return true;
-        }
-
         return false;
       }
     });
